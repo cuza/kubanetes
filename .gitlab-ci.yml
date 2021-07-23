@@ -7,7 +7,7 @@ build:
   stage: build
   script:
     - apt-get -yqq update && apt-get -yqq install gettext
-    - get-k0s.sh
+    - ./get-k0s.sh
     - dpkg-deb -b kubanetes
   artifacts:
     paths:
