@@ -55,6 +55,6 @@ echo "Downloading k0s airgap bundle from URL: $(_download_oci_bundle_url)"
 curl -sSLf $(_download_oci_bundle_url) > kubanetes/var/lib/k0s/images/bundle_file
 echo "Downloading k0s from URL: $(_download_url)"
 curl -sSLf $(_download_url) > kubanetes/usr/local/bin/k0s
-chmod 755 kubanetes/usr/local/bin/k0s
 
 K0S_VERSION=$(_version) K0S_ARCH=$(_arch) envsubst < control.template.txt > kubanetes/DEBIAN/control
+chmod 755 kubanetes/DEBIAN/control
