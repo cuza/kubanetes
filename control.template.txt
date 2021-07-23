@@ -1,0 +1,9 @@
+Website: cuza.ca
+Maintainer: Dave Cuza <dave@cuza.ca>
+Name: kubanetes
+Package: kubanetes
+Section: base
+Version: 1.0-$K0S_VERSION
+Architecture: $K0S_ARCH
+Description: A full self packaged k8s based on k0s designed to be used in Cuba or in airgap environments.
+Sponsor: Dave Cuza <dave@cuza.ca>
