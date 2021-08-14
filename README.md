@@ -13,9 +13,10 @@ resultados pueden variar.
 | Nodo Worker         | 1 vCPU (2 recomendado) | 0.5 GB (1 recomendado) |
 | Controller + worker | 1 vCPU (2 recomendado) | 1 GB (2 recomendado)   |
 
-### Sistema operativo
+### Host
 
 - Linux (kernel v3.10 o posterior)
+- Python 2.7 o superior
 
 ### Arquitectura
 

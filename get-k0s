@@ -1,10 +1,13 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 # Python 2 compatibility
 from __future__ import unicode_literals
 from __future__ import print_function
 
 # Standard library imports
+import argparse
+import getpass
 import os
 import re
 import sys
@@ -431,42 +434,89 @@ def get_arch():
         exit(1)  # Unsupported processor architecture
 
 
-def download_k0s():
-    arch = get_arch()
-    print('{0} architecture detected'.format(arch))
-    print('Getting latest k0s release')
+def download_k0s(github_base_url, version, arch):
+    if arch is None:
+        print('Detectando arquitectura....'.format(arch))
+        arch = get_arch()
+        print('Arquitectura detectada: {0}'.format(arch))
 
-    github_base_url = "https://nexus.uclv.edu.cu/repository/github.com"
-    bytes_response = request("{0}/k0sproject/k0s/releases".format(github_base_url))
-    html = bytes_response.decode("utf-8")
+    if version is None:
+        print('Obteniendo ultima versión de k0s....')
+        bytes_response = request("{0}/k0sproject/k0s/releases".format(github_base_url))
+        html = bytes_response.decode("utf-8")
 
-    # Parse the document
-    parser = HTMLement("div", attrs={"class": "f1 flex-auto min-width-0 text-normal"})
-    parser.feed(html)
-    root = parser.close()
+        # Parse the document
+        parser = HTMLement("div", attrs={"class": "f1 flex-auto min-width-0 text-normal"})
+        parser.feed(html)
+        root = parser.close()
 
-    version = ""
-    # Get all anchors
-    for a in root.iterfind(".//a"):
-        # Get version name
-        version = a.text
-    print('Latest k0s version detected: {0}'.format(version))
+        # Get all anchors
+        for a in root.iterfind(".//a"):
+            # Get version name
+            version = a.text
+    print('Ultima versión de k0s detectada: {0}'.format(version))
 
     k0s_url = "{0}/k0sproject/k0s/releases/download/{1}/k0s-{1}-{2}".format(github_base_url, version, arch)
-    print("Downloading k0s from {0}".format(k0s_url))
+    print("Descargando k0s desde {0}".format(k0s_url))
     k0s_bytes = request(k0s_url)
     f = open('/usr/local/bin/k0s', 'wb')
     f.write(k0s_bytes)
     f.close()
+    os.chmod('/usr/local/bin/k0s', 0o775)
 
-    k0s_airgap_bundle_url = "{0}/k0sproject/k0s/releases/download/{1}/k0s-airgap-bundle-{1}-{2}".format(github_base_url,
-                                                                                                        version, arch)
-    print("Downloading k0s airgap bundle from {0}".format(k0s_airgap_bundle_url))
+    k0s_airgap_bundle_url = "{0}/k0sproject/k0s/releases/download/{1}/k0s-airgap-bundle-{1}-{2}".format(github_base_url, version, arch)
+    print("Descargando k0s airgap bundle desde {0}".format(k0s_airgap_bundle_url))
     k0s_airgap_bundle_bytes = request(k0s_airgap_bundle_url)
-    f = open('/var/lib/k0s/images/bundle_file', 'wb')
+
+    bundlepath = os.path.join('/var/lib/k0s/images', 'bundle_file')
+    if not os.path.exists('/var/lib/k0s/images'):
+        os.makedirs('/var/lib/k0s/images')
+    f = open(bundlepath, "wb")
     f.write(k0s_airgap_bundle_bytes)
     f.close()
+    os.chmod('/var/lib/k0s/images/bundle_file', 0o775)
 
 
-if __name__ == '__main__':
-    download_k0s()
+if __name__ == "__main__":
+    username = getpass.getuser()
+    if username != 'root':
+        sys.exit("Lo siento humano, este instalador necesita correr como root")
+
+    parser = argparse.ArgumentParser(
+        description='Una utilidad para instalar k0s usando recursos cubanos.'
+    )
+    group = parser.add_mutually_exclusive_group()
+
+    group.add_argument(
+        '--github',
+        action='store_true',
+        dest="github",
+        default=False,
+        help='Instalar usando GitHub directamente en lugar de UCLV Nexus'
+    )
+
+    parser.add_argument(
+        "-v",
+        "--version",
+        type=str,
+        dest="version",
+        metavar='k0s-X.X.X',
+        default=None,
+        help="Version de k0s a instalar",
+    )
+    parser.add_argument(
+        "-a",
+        "--arch",
+        type=str,
+        dest="arch",
+        choices=['amd64', 'arm', 'arm64'],
+        default=None,
+        help="Arquitectura de k0s a instalar",
+    )
+
+    args = parser.parse_args()
+    src_base_url = "https://nexus.uclv.edu.cu/repository/github.com"
+    if args.github:
+        src_base_url = "https://github.com"
+
+    download_k0s(src_base_url, args.version, args.arch)
