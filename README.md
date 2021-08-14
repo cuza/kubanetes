@@ -11,7 +11,7 @@ resultados pueden variar.
 |---------------------|------------------------|------------------------|
 | Nodo Controller     | 1 vCPU (2 recomendado) | 1 GB (2 recomendado)   |
 | Nodo Worker         | 1 vCPU (2 recomendado) | 0.5 GB (1 recomendado) |
-| Controller + worker | 1 vCPU (2 recomendado) | 1 GB (2 recomendado)   |
+| Controller + Worker | 1 vCPU (2 recomendado) | 1 GB (2 recomendado)   |
 
 ### Host
 
