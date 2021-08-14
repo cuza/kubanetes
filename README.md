@@ -31,7 +31,7 @@ resultados pueden variar.
    /usr/bin/k0s.
 
     ```shell
-    curl -sSLf https://get.k0s.sh | sudo sh
+    curl -sSLf https://nexus.uclv.edu.cu/repository/github.com/cuza/kubanetes/raw/main/get-k0s | sudo sh
     ```
 2. Instalar k0s como un servicio
 
