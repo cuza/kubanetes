@@ -54,7 +54,7 @@ resultados pueden variar.
     sudo k0s start
     ```
 
-   El servicio k0s se iniciará automáticamente en el host después del reinicio del nodo.
+   El servicio k0s se iniciará automáticamente con el host después del proximo reinicio del nodo.
 
    Por lo general, pasa uno o dos minutos antes de que el nodo esté listo para desplegar aplicaciones.
 
