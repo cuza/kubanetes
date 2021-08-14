@@ -32,7 +32,7 @@ resultados pueden variar.
    /usr/bin/k0s.
 
     ```shell
-    curl -sSLf https://nexus.uclv.edu.cu/repository/github.com/cuza/kubanetes/raw/main/get-k0s | sudo python
+    curl -sSLf https://nexus.uclv.edu.cu/repository/github.com/cuza/kubanetes/raw/main/get-k0s | sudo python -
     ```
 2. Instalar k0s como un servicio
 
