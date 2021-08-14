@@ -119,4 +119,10 @@ resultados pueden variar.
       k0s start
       ```
 
+      Si desea crear un nodo controller+worker en el nuevo nodo, ejecute:
+
+      ```shell
+      sudo k0s install controller --enable-worker --token-file /path/to/token/file --single
+      k0s start
+      ```
 
