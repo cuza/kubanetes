@@ -1,6 +1,6 @@
 # Kubanetes
 
-Kubernetes a lo cubano, basado en k0s con decisiones y opiniones personales
+Kubernetes a lo cubano, instalable 💯% libre de costo desde la red de ETECSA, basado en k0s con decisiones y opiniones personales
 
 ## Requisitos del sistema
 
