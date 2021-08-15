@@ -4,7 +4,7 @@ Kubernetes a lo cubano, instalable 💯% libre de costo desde la red de ETECSA, 
 
 ## Requisitos del sistema
 
-Los requisitos mínimos de hardware para k0 que se detallan a continuación son aproximaciones y, por lo tanto, los
+Los requisitos mínimos de hardware para k0s que se detallan a continuación son aproximaciones y, por lo tanto, los
 resultados pueden variar.
 
 | Rol                 | Virtual CPU (vCPU)     | Memoria (RAM)          |
