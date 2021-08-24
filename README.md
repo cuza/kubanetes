@@ -1,6 +1,6 @@
 # Kubanetes
 
-Kubernetes a lo cubano, instalable 💯% libre de costo desde la red de ETECSA, basado en k0s con decisiones y opiniones personales
+Kubernetes a lo cubano, instalable 💯% libre de costo desde la red de ETECSA, basado en [k0s](https://k0sproject.io/) con decisiones y opiniones personales
 
 ## Requisitos del sistema
 
@@ -34,6 +34,16 @@ resultados pueden variar.
     ```shell
     curl -sSLf https://nexus.uclv.edu.cu/repository/github.com/cuza/kubanetes/raw/main/get-k0s | sudo python -
     ```
+   
+   Si utiliza un servidor proxy en su red puede usar:
+
+   ```shell
+   curl -sSLf -x proxy_ip:proxy_puerto https://nexus.uclv.edu.cu/repository/github.com/cuza/kubanetes/raw/main/get-k0s | sudo python -
+   ```
+   
+   Si su sistema operativo usa `python3` en vez de `python` cambie en el comando la version correspondiente
+
+
 2. Instalar k0s como un servicio
 
    El subcomando  `k0s install` instala k0s como un servicio del sistema en el host local usando uno de los sistemas
@@ -126,3 +136,6 @@ resultados pueden variar.
       k0s start
       ```
 
+## Documentación
+
+Este proyecto es un instalador que de [k0s](https://k0sproject.io/) que utiliza recursos publicados por la [UCLV](https://www.uclv.edu.cu/) libres de costo. Si desea profundizar mas en la instalación o configuración del cluster visite la [documentacion oficial](https://docs.k0sproject.io/main/install)
