@@ -46,7 +46,7 @@ WORKER_RAM = "512"
 WORKER_COUNT = 2
 
 #id SSH  id_rsa.pub etc
-ssh_rsa= "ssh-rsa Public key tucorreo@dominio.org"
+SSH_PUB_KEY = "ssh-rsa Public key tucorreo@dominio.org"
 
 
 ## general vagrant configurations
@@ -55,7 +55,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = BOX
   config.vm.provision "shell", :path => "provision/provision.sh",
       env: {
-        "ssh_rsa" => ssh_rsa,
+        "SSH_PUB_KEY" => SSH_PUB_KEY,
         "PROXY_IP" => PROXY_IP,
         "PROXY_PORT" => PROXY_PORT
       }

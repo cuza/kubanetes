@@ -5,7 +5,7 @@ sudo sed -i 's/security.ubuntu.com/repos.uclv.edu.cu/' /etc/apt/sources.list
 
 
 # Add authorized_keys 
-echo "${ssh_rsa}" >> /home/vagrant/.ssh/authorized_keys
+echo "${SSH_PUB_KEY}" >> /home/vagrant/.ssh/authorized_keys
 
 ### Check if PROXY_Ip is NULL
 
