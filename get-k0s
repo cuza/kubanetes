@@ -446,14 +446,11 @@ def download_k0s(github_base_url, version, arch):
         html = bytes_response.decode("utf-8")
 
         # Parse the document
-        parser = HTMLement("div", attrs={"class": "f1 flex-auto min-width-0 text-normal"})
+        parser = HTMLement("a", attrs={"class": "Link--primary"})
         parser.feed(html)
         root = parser.close()
+        version = root.text
 
-        # Get all anchors
-        for a in root.iterfind(".//a"):
-            # Get version name
-            version = a.text
     print('Ultima versión de k0s detectada: {0}'.format(version))
 
     k0s_url = "{0}/k0sproject/k0s/releases/download/{1}/k0s-{1}-{2}".format(github_base_url, version, arch)
