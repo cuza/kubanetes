@@ -449,7 +449,7 @@ def download_k0s(github_base_url, version, arch):
         parser = HTMLement("a", attrs={"class": "Link--primary"})
         parser.feed(html)
         root = parser.close()
-        version = root.text
+        version = root.text.strip()
 
     print('Ultima versión de k0s detectada: {0}'.format(version))
 
