@@ -478,9 +478,9 @@ def download_k3s(github_base_url, version, arch):
 
 
 if __name__ == "__main__":
-    # username = getpass.getuser()
-    # if username != 'root':
-    #     sys.exit("Lo siento humano, este instalador necesita correr como root")
+    username = getpass.getuser()
+    if username != 'root':
+        sys.exit("Lo siento humano, este instalador necesita correr como root")
 
     parser = argparse.ArgumentParser(
         description='Una utilidad para instalar k3s usando recursos cubanos.'
