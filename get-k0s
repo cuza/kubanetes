@@ -442,11 +442,11 @@ def download_k0s(github_base_url, version, arch):
 
     if version is None:
         print('Obteniendo ultima versión de k0s....')
-        bytes_response = request("{0}/k0sproject/k0s/releases".format(github_base_url))
+        bytes_response = request("{0}/k0sproject/k0s/releases/latest".format(github_base_url))
         html = bytes_response.decode("utf-8")
 
         # Parse the document
-        parser = HTMLement("a", attrs={"class": "Link--primary"})
+        parser = HTMLement("h1", attrs={"class": "d-inline mr-3"})
         parser.feed(html)
         root = parser.close()
         version = root.text.strip()
