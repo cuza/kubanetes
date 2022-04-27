@@ -468,13 +468,13 @@ def download_k3s(github_base_url, version, arch):
     print("Descargando k3s airgap bundle desde {0}".format(k3s_airgap_bundle_url))
     k3s_airgap_bundle_bytes = request(k3s_airgap_bundle_url)
 
-    bundlepath = os.path.join('/var/lib/rancher/k3s/agent/images', 'bundle_file')
+    bundlepath = os.path.join('/var/lib/rancher/k3s/agent/images', 'bundle_file.tar.gz')
     if not os.path.exists('/var/lib/rancher/k3s/agent/images'):
         os.makedirs('/var/lib/rancher/k3s/agent/images')
     f = open(bundlepath, "wb")
     f.write(k3s_airgap_bundle_bytes)
     f.close()
-    os.chmod('/var/lib/rancher/k3s/agent/images/bundle_file', 0o775)
+    os.chmod('/var/lib/rancher/k3s/agent/images/bundle_file.tar.gz', 0o775)
 
 
 if __name__ == "__main__":
